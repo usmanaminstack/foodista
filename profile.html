@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="profile.css">
+    <script src="https://kit.fontawesome.com/323bfe9c7e.js" crossorigin="anonymous"></script>
+</head>
+
+
+
+<body>
+    <nav class="navbar navbar-light ">
+        <div class="container-fluid">
+            <a class="navbar-brand"><i class="fas fa-hamburger"></i>FOOD<span>!STA</span></a> <a
+                href="index.html"><button class="btn btn-outline-success" type="submit">LOGOUT</button></a>
+        </div>
+    </nav>
+
+    <div class=" form-container">
+
+        <div class="row justify-content-center mt-20 input-field">
+            <div class="col-6" id="col-6">
+                <div class="form-group" id="form-group">
+                    <label for="exampleInputEmail1">Dish name</label>
+                    <input type="text" class="form-control" id="dish" aria-describedby="emailHelp">
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" >Dish Price</label>
+                    <input type="text" id="price" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" >Enter picture</label>
+                    <input type="file" id="picture" class="form-control">
+                </div>
+                <button id ="send" onclick='addData()' class="btn btn-primary">
+                    <span id="loaderText">add dish</span>
+                    <div id="loader" style="display: none;" class="spinner-border" role="status">
+                        <span class="sr-only"></span>
+                    </div>
+
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- <div class="lksa col-6" ><h1>usman</h1></div>
+    <div class="sidebar col-6">
+        <div class="sidebar-brand">
+            <h2>
+                <a class="navbar-brand"><i class="fas fa-hamburger"></i>FOOD<span>!STA</span></a>
+
+            </h2>
+        </div>
+        <div class="sidebar-menu">
+            
+            <ul>
+                <li>
+                    <a href="" class="active"><span class="fas fa-igloo"></span>
+                        <span>Dashboard</span></a>
+                </li>
+
+                <li>
+                    <a href=""><span class="las la-shopping-bag"></span>
+                        <span>Orders</span></a>
+                </li>
+
+
+                <li>
+                    <a href=""><span class="las la-clipboard-list"></span>
+                        <span>Pending</span></a>
+                </li>
+                <li>
+                    <a href=""><span class="las la-clipboard-list"></span>
+                        <span>Deliverd</span></a>
+                </li>
+            </ul>
+        </div>
+    </div> -->
+
+    <!-- <div class="container">
+        <div class="row justify-content-center mt-20">
+            <div class="col-6 justify-content-center text-center">
+                <h2>Profile</h2>
+                <div class="profile-div">
+                    <img id="userprofile"
+                        src="https://cdn1.vectorstock.com/i/1000x1000/05/60/man-character-employee-vector-25090560.jpg"
+                        alt="">
+                    <div>
+                        <i  class="fa fa-camera" data-toggle="modal" data-target="#exampleModal" aria-hidden="true"></i>
+                        <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit image</h5>
+
+                                        <button id="closeBtn" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                       <input id="editProfile" type="file" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button onclick="updateProfile()" type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mt-20">
+                    <h2 id="username"></h2>
+                    <span id="email"></span>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.0/firebase-storage.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyDe6RbJJW8KxtD1VP3oU5wRc7Yp_oB7aXw",
+            authDomain: "my-project-5a415.firebaseapp.com",
+            databaseURL: "https://my-project-5a415-default-rtdb.firebaseio.com",
+            projectId: "my-project-5a415",
+            storageBucket: "my-project-5a415.appspot.com",
+            messagingSenderId: "56166044394",
+            appId: "1:56166044394:web:d9384ec2a72a7008433d93"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+    <script src="./profile.js"></script>
+</body>
+
+</html>
